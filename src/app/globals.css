@@ -3,21 +3,22 @@
 @tailwind utilities;
 
 :root {
-  --bg-primary: #09090b;
-  --bg-card: #121215;
-  --bg-hover: #1a1a1f;
-  --bg-muted: #16161a;
+  --bg-primary: #080909;
+  --bg-card: #0d0e0e;
+  --bg-surface: #121313;
+  --bg-hover: #181919;
+  --bg-muted: #141515;
   
-  --text-primary: #e2e2dc;
-  --text-muted: #8e8e96;
-  --text-dim: #54545c;
+  --text-primary: #e6e2d8;
+  --text-muted: #a6a39a;
+  --text-dim: #666760;
   
-  --accent-primary: #e23812;
-  --accent-hover: #ff451d;
-  --accent-glow: rgba(226, 56, 18, 0.2);
+  --accent-primary: #b9b36a;
+  --accent-hover: #d2cb7c;
+  --accent-glow: rgba(185, 179, 106, 0.12);
   
-  --border-subtle: rgba(255, 255, 255, 0.07);
-  --border-bright: rgba(255, 255, 255, 0.18);
+  --border-subtle: #292a27;
+  --border-bright: #3d3e3a;
   
   --font-serif: 'Instrument Serif', 'Cinzel', Georgia, serif;
   --font-sans: 'Space Grotesk', system-ui, sans-serif;
@@ -37,12 +38,12 @@ html {
   scroll-behavior: smooth;
   color-scheme: dark;
   selection-background-color: var(--accent-primary);
-  selection-color: #000000;
+  selection-color: #080909;
 }
 
 ::selection {
   background-color: var(--accent-primary);
-  color: #000000;
+  color: #080909;
 }
 
 body {
@@ -69,7 +70,7 @@ button {
   cursor: pointer;
 }
 
-/* Subtle Film Grain Noise Overlay */
+/* Extremely Subtle Analog Film Grain Noise Overlay */
 .bg-grain {
   position: fixed;
   top: -50%;
@@ -78,16 +79,16 @@ button {
   bottom: -50%;
   width: 200%;
   height: 200vh;
-  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.035'/%3E%3C/svg%3E");
   pointer-events: none;
   z-index: 9999;
-  opacity: 0.6;
+  opacity: 0.5;
 }
 
-/* Custom Scrollbar */
+/* Minimal Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 4px;
+  height: 4px;
 }
 
 ::-webkit-scrollbar-track {
@@ -95,8 +96,8 @@ button {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--border-bright);
-  border-radius: 3px;
+  background: var(--border-subtle);
+  border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -115,16 +116,19 @@ button {
 
 .font-mono-tech {
   font-family: var(--font-mono);
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-}
-
-.text-accent-glow {
-  text-shadow: 0 0 20px var(--accent-glow);
 }
 
 .border-grid {
   border-color: var(--border-subtle);
+}
+
+/* Thin Editorial Divider */
+.editorial-rule {
+  height: 1px;
+  background-color: var(--border-subtle);
+  width: 100%;
 }
 
 .scanned-line {
@@ -132,7 +136,7 @@ button {
     0deg,
     transparent,
     transparent 2px,
-    rgba(255, 255, 255, 0.015) 3px,
+    rgba(230, 226, 216, 0.012) 3px,
     transparent 4px
   );
 }

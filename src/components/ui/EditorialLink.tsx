@@ -20,8 +20,8 @@ export function EditorialLink({
   showArrow = true,
 }: EditorialLinkProps) {
   const content = (
-    <span className={`inline-flex items-center gap-1.5 font-mono text-xs text-foreground-muted hover:text-accent transition-colors group ${className}`}>
-      <span>{children}</span>
+    <span className={`inline-flex items-center gap-2 font-mono text-xs text-foreground-muted hover:text-foreground transition-colors group relative py-0.5 border-b border-transparent hover:border-accent ${className}`}>
+      <span className="tracking-wider">{children}</span>
       {showArrow && (
         <ArrowRight className="w-3.5 h-3.5 text-accent group-hover:translate-x-1 transition-transform" />
       )}

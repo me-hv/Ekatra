@@ -1,25 +1,25 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
-import { User, Cpu, Terminal, Radio, Mail, Github, ExternalLink, Disc, BookOpen } from 'lucide-react';
+import { Terminal } from 'lucide-react';
 import { ARTIST_DATA } from '@/data/artist';
+import { SectionHeader } from '@/components/ui/SectionHeader';
 
 export default function AboutPage() {
   return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16 font-mono text-xs">
       
       {/* Header Profile Section */}
       <div className="space-y-6 border-b border-border pb-12">
-        <span className="font-mono-tech text-xs text-accent tracking-widest block">05 / ARTIST PROFILE</span>
+        <span className="text-accent tracking-[0.2em] font-bold block">05 / ARTIST PROFILE</span>
         <h1 className="font-editorial text-5xl sm:text-7xl font-bold text-foreground">
           {ARTIST_DATA.name}
         </h1>
-        <p className="font-mono text-sm text-accent tracking-widest">
-          {ARTIST_DATA.roles.join(' • ')}
+        <p className="text-accent tracking-widest uppercase">
+          {ARTIST_DATA.roles.join(' · ')}
         </p>
 
-        <div className="p-8 rounded-2xl bg-background-card border border-border font-serif text-lg sm:text-xl text-foreground leading-relaxed italic space-y-4">
+        <div className="p-8 border border-border bg-background-card font-serif text-lg sm:text-xl text-foreground leading-relaxed italic space-y-4 font-normal">
           {ARTIST_DATA.manifesto.map((line, idx) => (
             <p key={idx}>&ldquo;{line}&rdquo;</p>
           ))}
@@ -27,8 +27,8 @@ export default function AboutPage() {
       </div>
 
       {/* Main Bio & Philosophy */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-        <div className="lg:col-span-7 space-y-6 font-sans text-base text-foreground-muted leading-relaxed">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        <div className="lg:col-span-7 space-y-6 font-sans text-base text-foreground-muted leading-relaxed font-normal">
           <h2 className="font-editorial text-3xl font-bold text-foreground">
             BIOGRAPHY & PHILOSOPHY
           </h2>
@@ -38,10 +38,10 @@ export default function AboutPage() {
           </p>
         </div>
 
-        {/* Quick Specs */}
+        {/* Specifications Inventory Card */}
         <div className="lg:col-span-5 space-y-6">
-          <div className="p-6 rounded-xl bg-background-card border border-border font-mono text-xs space-y-4">
-            <div className="flex items-center gap-2 text-accent font-bold tracking-wider border-b border-border pb-3">
+          <div className="p-6 border border-border bg-background-card space-y-4">
+            <div className="flex items-center gap-2 text-accent font-bold tracking-widest border-b border-border pb-3 uppercase">
               <Terminal className="w-4 h-4" />
               <span>ARTIST SPECIFICATIONS</span>
             </div>
@@ -68,20 +68,20 @@ export default function AboutPage() {
 
       {/* Gear & Technology Stack */}
       <div className="space-y-8">
-        <h2 className="font-editorial text-3xl font-bold text-foreground border-b border-border pb-4">
+        <h2 className="font-editorial text-3xl font-bold text-foreground border-b border-border pb-4 font-normal">
           EQUIPMENT & CREATIVE TOOLING STACK
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {ARTIST_DATA.gearStack.map((group, idx) => (
-            <div key={idx} className="p-6 rounded-xl bg-background-card border border-border space-y-4">
-              <h3 className="font-mono text-xs text-accent font-bold uppercase tracking-wider">
+            <div key={idx} className="p-6 border border-border bg-background-card space-y-4">
+              <h3 className="text-accent font-bold uppercase tracking-wider text-[11px]">
                 {group.category}
               </h3>
-              <ul className="space-y-2 font-mono text-xs text-foreground-muted">
+              <ul className="space-y-2 text-foreground-muted">
                 {group.items.map((item, itemIdx) => (
                   <li key={itemIdx} className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+                    <span className="w-1 h-1 bg-accent" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -93,12 +93,12 @@ export default function AboutPage() {
 
       {/* Influences */}
       <div className="space-y-6">
-        <h2 className="font-editorial text-3xl font-bold text-foreground border-b border-border pb-4">
+        <h2 className="font-editorial text-3xl font-bold text-foreground border-b border-border pb-4 font-normal">
           ARTISTIC INFLUENCES
         </h2>
-        <div className="flex flex-wrap gap-3 font-mono text-xs">
+        <div className="flex flex-wrap gap-2.5">
           {ARTIST_DATA.influences.map((inf, idx) => (
-            <span key={idx} className="px-3 py-1.5 rounded-full bg-background-card border border-border text-foreground-muted">
+            <span key={idx} className="px-3 py-1.5 border border-border bg-background-card text-foreground-muted">
               {inf}
             </span>
           ))}

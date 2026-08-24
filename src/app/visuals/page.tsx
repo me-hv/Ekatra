@@ -2,8 +2,9 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { Camera, Layers, X, Sparkles, Sliders } from 'lucide-react';
+import { Camera, X } from 'lucide-react';
 import { VISUAL_ITEMS, VisualItem } from '@/data/visuals';
+import { SectionHeader } from '@/components/ui/SectionHeader';
 
 const CATEGORIES = ['ALL', 'Photography', 'Artwork', 'Video Still', 'Studio', 'Tech Experiment'];
 
@@ -17,26 +18,24 @@ export default function VisualsPage() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
-      {/* Header */}
-      <div className="space-y-4 border-b border-border pb-8">
-        <span className="font-mono-tech text-xs text-accent tracking-widest block">03 / ARTWORK & EXIF</span>
-        <h1 className="font-editorial text-4xl sm:text-6xl font-bold text-foreground">
-          VISUAL ARCHIVE
-        </h1>
-        <p className="font-sans text-base sm:text-lg text-foreground-muted max-w-3xl leading-relaxed">
-          Editorial gallery of film photography, album artwork, 16mm video stills, studio artifacts, and audio-reactive WebGL experiments.
-        </p>
+      <div className="space-y-6">
+        <SectionHeader
+          number="03"
+          category="ARTWORK & EXIF"
+          title="VISUAL ARCHIVE"
+          subtitle="Editorial gallery of film photography, album artwork, 16mm video stills, studio contact sheets, and audio-reactive WebGL experiments."
+        />
 
-        {/* Categories */}
-        <div className="flex flex-wrap gap-2 pt-4">
+        {/* Filter Bar */}
+        <div className="flex flex-wrap gap-2 font-mono text-xs border-b border-border pb-4">
           {CATEGORIES.map((cat) => (
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-3 py-1.5 rounded-full font-mono text-xs transition-colors ${
+              className={`px-3 py-1 border transition-colors ${
                 selectedCategory === cat
-                  ? 'bg-accent text-[#09090b] font-bold'
-                  : 'bg-background-card border border-border text-foreground-muted hover:text-foreground'
+                  ? 'border-accent bg-accent/10 text-accent font-bold'
+                  : 'border-border bg-background-card text-foreground-muted hover:text-foreground'
               }`}
             >
               {cat}
@@ -46,30 +45,30 @@ export default function VisualsPage() {
       </div>
 
       {/* Asymmetric Gallery Layout */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {filteredItems.map((item) => (
           <div
             key={item.id}
             onClick={() => setActiveModalItem(item)}
-            className="group relative rounded-xl overflow-hidden bg-background-card border border-border hover:border-accent transition-all cursor-pointer space-y-3 p-4"
+            className="group relative border border-border bg-background-card p-4 hover:border-accent transition-all cursor-pointer space-y-3"
           >
-            <div className="relative aspect-[4/3] rounded-lg overflow-hidden border border-border/60">
+            <div className="relative aspect-[4/3] border border-border overflow-hidden">
               <Image
                 src={item.imageUrl}
                 alt={item.title}
                 fill
-                className="object-cover group-hover:scale-105 transition-transform duration-700"
+                className="object-cover grayscale contrast-125 opacity-85 group-hover:scale-105 transition-transform duration-700"
               />
-              <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-4 text-center">
-                <span className="px-4 py-2 rounded-full bg-accent text-[#09090b] font-mono text-xs font-bold">
-                  INSPECT EXIF & DETAILS
+              <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-4 text-center">
+                <span className="px-3 py-1.5 border border-accent bg-[#080909] font-mono text-xs text-foreground font-bold">
+                  INSPECT EXIF METADATA →
                 </span>
               </div>
             </div>
 
-            <div className="space-y-1">
-              <div className="flex items-center justify-between font-mono text-[10px] text-foreground-muted">
-                <span className="text-accent">{item.category}</span>
+            <div className="space-y-1 font-mono text-xs">
+              <div className="flex items-center justify-between text-[10px] text-foreground-dim">
+                <span className="text-accent uppercase font-bold">{item.category}</span>
                 <span>{item.archiveCode}</span>
               </div>
               <h3 className="font-editorial text-lg font-bold text-foreground group-hover:text-accent transition-colors">
@@ -84,22 +83,22 @@ export default function VisualsPage() {
       {activeModalItem && (
         <div
           onClick={() => setActiveModalItem(null)}
-          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md p-4 sm:p-12 flex items-center justify-center overflow-y-auto"
+          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md p-4 sm:p-12 flex items-center justify-center overflow-y-auto"
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="relative max-w-5xl w-full bg-background-card border border-border rounded-2xl overflow-hidden p-6 sm:p-10 space-y-6 max-h-[90vh] overflow-y-auto"
+            className="relative max-w-5xl w-full bg-[#080909] border border-border p-6 sm:p-10 space-y-6 max-h-[90vh] overflow-y-auto"
           >
             <button
               onClick={() => setActiveModalItem(null)}
-              aria-label="Close Lightbox Modal"
-              className="absolute top-6 right-6 p-2 rounded-full bg-background border border-border text-foreground hover:text-accent transition-colors"
+              aria-label="Close Lightbox"
+              className="absolute top-6 right-6 p-2 border border-border text-foreground-muted hover:text-foreground transition-colors"
             >
               <X className="w-5 h-5" />
             </button>
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-              <div className="lg:col-span-7 relative aspect-square sm:aspect-video rounded-xl overflow-hidden border border-border">
+              <div className="lg:col-span-7 relative aspect-square sm:aspect-video border border-border">
                 <Image
                   src={activeModalItem.imageUrl}
                   alt={activeModalItem.title}
@@ -110,19 +109,19 @@ export default function VisualsPage() {
 
               <div className="lg:col-span-5 space-y-6 font-mono text-xs">
                 <div>
-                  <span className="px-2.5 py-1 rounded bg-accent-glow/10 border border-accent/30 text-accent font-bold">
+                  <span className="px-2 py-0.5 border border-accent/40 text-accent font-bold uppercase text-[10px]">
                     {activeModalItem.category}
                   </span>
                   <h2 className="font-editorial text-2xl sm:text-3xl font-bold text-foreground mt-3">
                     {activeModalItem.title}
                   </h2>
-                  <p className="font-sans text-sm text-foreground-muted mt-2">
+                  <p className="font-sans text-sm text-foreground-muted mt-2 leading-relaxed">
                     {activeModalItem.description}
                   </p>
                 </div>
 
-                <div className="p-4 rounded-xl bg-background border border-border space-y-3">
-                  <div className="flex items-center gap-2 text-accent font-bold tracking-wider">
+                <div className="p-4 border border-border bg-background-card space-y-3">
+                  <div className="flex items-center gap-2 text-accent font-bold tracking-widest border-b border-border pb-2">
                     <Camera className="w-4 h-4" />
                     <span>EXIF METADATA & SPECS</span>
                   </div>

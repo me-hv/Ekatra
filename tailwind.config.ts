@@ -12,6 +12,7 @@ const config: Config = {
         background: {
           DEFAULT: "var(--bg-primary)",
           card: "var(--bg-card)",
+          surface: "var(--bg-surface)",
           hover: "var(--bg-hover)",
           muted: "var(--bg-muted)",
         },
@@ -35,25 +36,6 @@ const config: Config = {
         sans: ["var(--font-sans)", "Inter", "sans-serif"],
         mono: ["var(--font-mono)", "JetBrains Mono", "monospace"],
       },
-      animation: {
-        'grain': 'grain 8s steps(10) infinite',
-        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'float': 'float 6s ease-in-out infinite',
-      },
-      keyframes: {
-        grain: {
-          '0%, 100%': { transform: 'translate(0, 0)' },
-          '10%': { transform: 'translate(-5%, -10%)' },
-          '30%': { transform: 'translate(3%, -15%)' },
-          '50%': { transform: 'translate(12%, 9%)' },
-          '70%': { transform: 'translate(9%, 4%)' },
-          '90%': { transform: 'translate(-10%, 10%)' },
-        },
-        float: {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-6px)' },
-        }
-      }
     },
   },
   plugins: [],
