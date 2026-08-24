@@ -53,7 +53,7 @@ export default function RootLayout({
 
         <AudioProvider>
           <Header />
-          <main className="pt-20 pb-32 min-h-screen relative z-10">
+          <main className="pt-24 pb-36 min-h-screen relative z-10">
             {children}
           </main>
           <GlobalPlayer />
