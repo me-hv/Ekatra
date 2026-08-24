@@ -1,8 +1,31 @@
 import type { Metadata } from "next";
+import { Instrument_Serif, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { AudioProvider } from "@/context/AudioContext";
 import { Header } from "@/components/Header";
 import { GlobalPlayer } from "@/components/GlobalPlayer";
+
+const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: ["400"],
+  style: ["normal", "italic"],
+  variable: "--font-serif",
+  display: "swap",
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-sans",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-mono",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "EKATRA — Creative Archive",
@@ -16,22 +39,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
-      </head>
-      <body className="antialiased min-h-screen bg-background text-foreground selection:bg-accent selection:text-black" suppressHydrationWarning>
-        {/* Subtle Film Grain SVG Noise Filter Overlay */}
+    <html
+      lang="en"
+      className={`dark ${instrumentSerif.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
+      suppressHydrationWarning
+    >
+      <body
+        className="antialiased min-h-screen bg-background text-foreground selection:bg-accent selection:text-black font-sans"
+        suppressHydrationWarning
+      >
+        {/* Film Grain Texture Overlay */}
         <div className="bg-grain" aria-hidden="true" />
 
         <AudioProvider>
           <Header />
-          <main className="pt-16 pb-32 min-h-screen relative z-10">
+          <main className="pt-20 pb-32 min-h-screen relative z-10">
             {children}
           </main>
           <GlobalPlayer />
